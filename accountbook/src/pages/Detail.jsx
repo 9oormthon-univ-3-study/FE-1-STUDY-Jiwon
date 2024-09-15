@@ -35,7 +35,7 @@ function Detail() {
         <D.ButtonContainer>
           <Button>수정</Button>
           <Button>삭제</Button>
-          <Button>뒤로 가기</Button>
+          <Button>뒤로가기</Button>
         </D.ButtonContainer>
       </D.Container>
     </D.Detail>
