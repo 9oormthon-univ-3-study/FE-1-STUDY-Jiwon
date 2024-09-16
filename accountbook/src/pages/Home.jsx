@@ -5,16 +5,15 @@ import Chart from "../components/home/Chart";
 import Content from "../components/home/Content";
 import { useState } from "react";
 
-import fakeData from "../fakeData.json";
-
-function Home() {
-  const [items, setItems] = useState(fakeData);
+function Home({ items, setItems }) {
   const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth() + 1);
 
+  // 새 항목 추가 함수
   const addItem = (newItem) => {
     setItems((prevItems) => [...prevItems, newItem]);
   };
 
+  // 선택한 월을 관리하는 함수
   const handleMonthSelect = (month) => {
     setSelectedMonth(month);
   };

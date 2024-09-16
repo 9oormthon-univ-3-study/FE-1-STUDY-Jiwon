@@ -1,12 +1,10 @@
 import styled from "styled-components";
 
 export const Detail = styled.div`
-  max-width: 800px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  margin: 0px auto;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
 `;
 
 export const Container = styled.div`
