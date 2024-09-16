@@ -3,10 +3,12 @@ import Menu from "../components/home/Menu";
 import Month from "../components/home/Month";
 import Chart from "../components/home/Chart";
 import Content from "../components/home/Content";
-import { useState } from "react";
+import React, { useContext } from "react";
+import { ItemsContext } from "../context/ItemsContext";
 
-function Home({ items, setItems }) {
-  const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth() + 1);
+function Home() {
+  const { items, setItems } = useContext(ItemsContext);
+  const [selectedMonth, setSelectedMonth] = React.useState(new Date().getMonth() + 1);
 
   // 새 항목 추가 함수
   const addItem = (newItem) => {

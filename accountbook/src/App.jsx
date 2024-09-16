@@ -1,22 +1,17 @@
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import Home from "./pages/Home";
 import Detail from "./pages/Detail";
-import fakedata from "./fakeData.json";
-import { useState, useEffect } from "react";
+import { ItemsProvider } from "./context/ItemsContext";
 
 const App = () => {
-  const [items, setItems] = useState([]);
-
-  useEffect(() => {
-    setItems(fakedata);
-  }, []);
-
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home items={items} setItems={setItems} />} />
-        <Route path="/detail/:id" element={<Detail items={items} setItems={setItems} />} />
-      </Routes>
+      <ItemsProvider>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/detail/:id" element={<Detail />} />
+        </Routes>
+      </ItemsProvider>
     </BrowserRouter>
   );
 };

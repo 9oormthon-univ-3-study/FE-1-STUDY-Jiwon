@@ -1,12 +1,14 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Button from "../components/Detail/Button";
 import Input from "../components/Detail/Input";
 import * as D from "./DetailStyle";
+import { ItemsContext } from "../context/ItemsContext";
 
-const Detail = ({ items, setItems }) => {
+const Detail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { items, setItems } = useContext(ItemsContext);
 
   const dateRef = useRef(null);
   const itemRef = useRef(null);
@@ -17,7 +19,6 @@ const Detail = ({ items, setItems }) => {
 
   useEffect(() => {
     if (item) {
-      // Set the initial values for inputs
       dateRef.current.value = item.date;
       itemRef.current.value = item.item;
       amountRef.current.value = item.amount;
