@@ -1,18 +1,19 @@
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import Home from "./pages/Home";
 import Detail from "./pages/Detail";
-import { ItemsProvider } from "./context/ItemsContext";
+import { Provider } from "react-redux";
+import store from "./app/store";
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <ItemsProvider>
+    <Provider store={store}>
+      <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/detail/:id" element={<Detail />} />
         </Routes>
-      </ItemsProvider>
-    </BrowserRouter>
+      </BrowserRouter>
+    </Provider>
   );
 };
 

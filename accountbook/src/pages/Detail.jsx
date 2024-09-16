@@ -1,21 +1,24 @@
-import React, { useRef, useEffect, useContext } from "react";
+// src/pages/Detail.jsx
+import React, { useRef, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Button from "../components/Detail/Button";
 import Input from "../components/Detail/Input";
 import * as D from "./DetailStyle";
-import { ItemsContext } from "../context/ItemsContext";
+import { useSelector, useDispatch } from "react-redux";
+import { updateItem, deleteItem } from "../features/items/itemsSlice";
+import { selectItemById } from "../features/items/itemsSelectors";
 
 const Detail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { items, setItems } = useContext(ItemsContext);
+  const dispatch = useDispatch();
+
+  const item = useSelector(selectItemById(id));
 
   const dateRef = useRef(null);
   const itemRef = useRef(null);
   const amountRef = useRef(null);
   const descriptionRef = useRef(null);
-
-  const item = items.find((item) => item.id === id);
 
   useEffect(() => {
     if (item) {
@@ -40,9 +43,7 @@ const Detail = () => {
         description: descriptionRef.current.value,
       };
 
-      const updatedItems = items.map((i) => (i.id === id ? updatedItem : i));
-      setItems(updatedItems);
-
+      dispatch(updateItem(updatedItem));
       navigate("/");
     }
   };
@@ -50,8 +51,7 @@ const Detail = () => {
   const handleDelete = () => {
     const confirmed = window.confirm("지출 항목을 삭제하시겠습니까?");
     if (confirmed) {
-      const updatedItems = items.filter((i) => i.id !== id);
-      setItems(updatedItems);
+      dispatch(deleteItem(id));
       navigate("/");
     }
   };
