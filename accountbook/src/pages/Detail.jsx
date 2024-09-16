@@ -47,10 +47,12 @@ const Detail = ({ items, setItems }) => {
   };
 
   const handleDelete = () => {
-    const updatedItems = items.filter((i) => i.id !== id);
-    setItems(updatedItems);
-
-    navigate("/");
+    const confirmed = window.confirm("지출 항목을 삭제하시겠습니까?");
+    if (confirmed) {
+      const updatedItems = items.filter((i) => i.id !== id);
+      setItems(updatedItems);
+      navigate("/");
+    }
   };
 
   return (
